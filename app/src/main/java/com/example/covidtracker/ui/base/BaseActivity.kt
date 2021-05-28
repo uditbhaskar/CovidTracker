@@ -1,7 +1,7 @@
 package com.example.covidtracker.ui.base
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -13,10 +13,7 @@ import com.example.covidtracker.utils.display.Toaster
 
 import javax.inject.Inject
 
-/**
- * Reference for generics: https://kotlinlang.org/docs/reference/generics.html
- * Basically BaseActivity will take any class that extends BaseViewModel
- */
+
 abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     @Inject
@@ -25,7 +22,7 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies(buildActivityComponent())
         super.onCreate(savedInstanceState)
-        setContentView(provideLayoutId())
+        setContentView(provideLayoutView())
         setupObservers()
         setupView(savedInstanceState)
         viewModel.onCreate()
@@ -60,8 +57,8 @@ abstract class BaseActivity<VM : BaseViewModel> : AppCompatActivity() {
         else super.onBackPressed()
     }
 
-    @LayoutRes
-    protected abstract fun provideLayoutId(): Int
+
+    protected abstract fun provideLayoutView(): View
 
     protected abstract fun injectDependencies(activityComponent: ActivityComponent)
 

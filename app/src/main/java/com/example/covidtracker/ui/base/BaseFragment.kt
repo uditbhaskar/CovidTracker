@@ -17,10 +17,7 @@ import com.example.covidtracker.utils.display.Toaster
 
 import javax.inject.Inject
 
-/**
- * Reference for generics: https://kotlinlang.org/docs/reference/generics.html
- * Basically BaseFragment will take any class that extends BaseViewModel
- */
+
 abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
 
     @Inject
