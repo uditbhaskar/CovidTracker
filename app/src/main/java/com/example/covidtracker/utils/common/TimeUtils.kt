@@ -1,5 +1,7 @@
 package com.example.covidtracker.utils.common
 
+import android.text.format.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 object TimeUtils {
@@ -8,6 +10,14 @@ object TimeUtils {
     private const val MINUTE_MILLIS = 60 * SECOND_MILLIS
     private const val HOUR_MILLIS = 60 * MINUTE_MILLIS
     private const val DAY_MILLIS = 24 * HOUR_MILLIS
+
+
+    fun getYesterdayDate():String{
+        val dateFormat= SimpleDateFormat("yyyy-MM-dd")
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DATE, -1)
+        return dateFormat.format(cal.time)
+    }
 
     fun getTimeAgo(date: Date): String {
         val time = date.time

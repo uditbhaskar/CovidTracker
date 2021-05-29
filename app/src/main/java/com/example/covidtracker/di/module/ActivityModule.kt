@@ -3,6 +3,7 @@ package com.example.covidtracker.di.module
 
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.covidtracker.data.repository.SearchedCountryDataRepository
 import com.example.covidtracker.databinding.ActivityHomeBinding
 import com.example.covidtracker.databinding.ActivitySplashBinding
 import com.example.covidtracker.ui.base.BaseActivity
@@ -54,13 +55,15 @@ class ActivityModule(private val activity: BaseActivity<*>) {
     fun providesHomeViewModel(
         schedulerProvider: SchedulerProvider,
         compositeDisposable: CompositeDisposable,
-        networkHelper: NetworkHelper
+        networkHelper: NetworkHelper,
+        searchedCountryDataRepository: SearchedCountryDataRepository
     ): HomeViewModel = ViewModelProviders.of(
         activity, ViewModelProviderFactory(HomeViewModel::class) {
             HomeViewModel(
                 schedulerProvider,
                 compositeDisposable,
-                networkHelper
+                networkHelper,
+                searchedCountryDataRepository
             )
         }).get(HomeViewModel::class.java)
 

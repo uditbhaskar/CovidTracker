@@ -54,7 +54,8 @@
             android:paddingEnd="20dp"
             android:paddingBottom="2dp"
             android:textColor="@color/black"
-            android:textColorHint="#757373" />
+            android:textColorHint="#757373"
+            android:importantForAutofill="no" />
 
         <ImageView
             android:id="@+id/et_search"

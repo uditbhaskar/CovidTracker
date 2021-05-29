@@ -16,7 +16,9 @@ class SplashViewModel(
     val launchHome = MutableLiveData<Event<Boolean>>()
 
     override fun onCreate() {
+
         launchHome.postValue(Event(true))
     }
+
 
 }

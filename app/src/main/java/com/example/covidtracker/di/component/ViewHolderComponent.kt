@@ -3,6 +3,7 @@ package com.example.covidtracker.di.component
 import com.example.covidtracker.di.component.ApplicationComponent
 import com.example.covidtracker.di.ViewModelScope
 import com.example.covidtracker.di.module.ViewHolderModule
+import com.example.covidtracker.ui.home.searchList.SearchItemViewHolder
 
 
 import dagger.Component
@@ -13,6 +14,6 @@ import dagger.Component
     modules = [ViewHolderModule::class]
 )
 interface ViewHolderComponent {
-
+    fun inject(itemViewHolder: SearchItemViewHolder)
 
 }
