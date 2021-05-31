@@ -8,6 +8,8 @@ import com.example.covidtracker.databinding.ActivityHomeBinding
 import com.example.covidtracker.databinding.ActivitySplashBinding
 import com.example.covidtracker.ui.base.BaseActivity
 import com.example.covidtracker.ui.home.HomeViewModel
+import com.example.covidtracker.ui.home.historyList.HistoryAdapter
+import com.example.covidtracker.ui.home.searchList.SearchAdapter
 import com.example.covidtracker.ui.splash.SplashViewModel
 import com.example.covidtracker.utils.ViewModelProviderFactory
 import com.example.covidtracker.utils.network.NetworkHelper
@@ -30,9 +32,15 @@ class ActivityModule(private val activity: BaseActivity<*>) {
     @Provides
     fun provideLinearLayoutManager(): LinearLayoutManager = LinearLayoutManager(activity)
 
+    @Provides
+    fun providesSearchListAdapter() = SearchAdapter(activity.lifecycle, ArrayList())
 
     @Provides
     fun providesSplashBinding() = ActivitySplashBinding.inflate(activity.layoutInflater)
+
+
+    @Provides
+    fun providesHistoryAdapter() = HistoryAdapter(activity.lifecycle, ArrayList())
 
     @Provides
     fun providesSplashViewModel(

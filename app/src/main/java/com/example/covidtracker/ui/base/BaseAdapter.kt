@@ -47,8 +47,10 @@ abstract class BaseAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseItemViewM
             fun onParentStart() {
                 recyclerView?.run {
                     if (layoutManager is LinearLayoutManager) {
-                        val first = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                        val last = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                        val first =
+                            (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                        val last =
+                            (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                         if (first in 0..last)
                             for (i in first..last) {
                                 findViewHolderForAdapterPosition(i)?.let {
@@ -89,10 +91,7 @@ abstract class BaseAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseItemViewM
 
     fun appendData(dataList: List<T>) {
         this.dataList.removeAll(this.dataList)
-        this.dataList.clear()
-        if (dataList != null) {
-            this.dataList.addAll(dataList)
-        }else this.dataList= emptyList<SearchedCountryDataResponse>() as ArrayList<T>
+        this.dataList.addAll(dataList)
         notifyDataSetChanged()
     }
 }

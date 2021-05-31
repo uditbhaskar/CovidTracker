@@ -22,6 +22,4 @@ data class SearchedCountryDataResponse(
     @Expose
     @SerializedName("Active")
     var Active:Int
-
-
 )

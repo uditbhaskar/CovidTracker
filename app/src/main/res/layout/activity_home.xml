@@ -171,7 +171,6 @@
                     android:contentDescription="@string/todo"
                     android:padding="10dp"
                     android:src="@drawable/ic_un_draw_history"
-
                     />
 
                 <TextView
