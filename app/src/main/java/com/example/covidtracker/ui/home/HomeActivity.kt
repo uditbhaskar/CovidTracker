@@ -43,7 +43,7 @@ class HomeActivity : BaseActivity<HomeViewModel>() {
 
         binding.etSearch.setOnClickListener {
 
-            viewModel.onSearching(binding.searchBar.text.toString())
+            viewModel.onSearching(binding.searchBar.text.trim().toString())
 
             DismissKeyboard.hideSoftKeyBoard(
                 this,
