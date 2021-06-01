@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_search">
+        android:background="@drawable/background_search_new">
 
         <TextView
             android:id="@+id/tv_country_history"
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/tv_country_history"
-            android:background="#727180" />
+            android:background="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tv_province_history"
@@ -43,20 +43,29 @@
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:maxLines="1"
+            android:textSize="12sp"
             android:padding="2dp"
             android:text="@string/province_assam"
             android:textColor="@color/colorAccent" />
 
+
+        <View
+            android:id="@+id/view_top"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_province_history"
+            android:background="@color/colorPrimary" />
         <TextView
             android:id="@+id/tv_total_cases_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_province_history"
+            android:layout_below="@+id/view_top"
             android:layout_margin="4dp"
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:maxLines="1"
             android:padding="2dp"
+            android:textSize="13sp"
             android:text="@string/confirmed_cases_12134"
             android:textColor="@color/colorAccent"
             android:textStyle="bold" />

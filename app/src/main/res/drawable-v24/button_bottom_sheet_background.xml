@@ -7,7 +7,7 @@
         android:topRightRadius="0dip" />
     <stroke
         android:width="2dp"
-        android:color="#727180" />
+        android:color="@color/colorPrimary" />
 
 
 </shape>

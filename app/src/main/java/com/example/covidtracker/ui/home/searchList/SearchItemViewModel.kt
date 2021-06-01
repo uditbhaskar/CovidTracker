@@ -1,11 +1,13 @@
 package com.example.covidtracker.ui.home.searchList
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.covidtracker.data.local.entity.SavedItemEntity
 import com.example.covidtracker.data.remote.response.SearchedCountryDataResponse
 import com.example.covidtracker.data.repository.SearchedCountryDataRepository
 import com.example.covidtracker.ui.base.BaseItemViewModel
+import com.example.covidtracker.utils.common.Event
 import com.example.covidtracker.utils.network.NetworkHelper
 import com.example.covidtracker.utils.rx.SchedulerProvider
 import io.reactivex.Single
@@ -31,8 +33,11 @@ class SearchItemViewModel @Inject constructor(
     val deathCount: LiveData<Int> = Transformations.map(data) { it.Deaths }
     val recoveredCount: LiveData<Int> = Transformations.map(data) { it.Recovered }
 
+    val onLaunchDetailsActivity : MutableLiveData<Event<Map<String, String>>> = MutableLiveData()
+
 
     override fun onCreate() {
+
     }
 
 
@@ -58,8 +63,8 @@ class SearchItemViewModel @Inject constructor(
         )
     }
 
-    fun onLaunch() {
-        //going to detail page activity
+    fun onLaunchDetailsView() {
+        onLaunchDetailsActivity.postValue(Event(emptyMap()))
     }
 
 }

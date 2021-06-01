@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#151515"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:foregroundGravity="center_vertical"
+            android:padding="15dp"
+            android:src="@drawable/ic_arrow_back_black_24dp">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="center_horizontal"
+            android:text="@string/details"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/background_search"
+        android:padding="5dp">
+
+
+        <TextView
+            android:id="@+id/tv_country_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_province_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_country_details"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_total_cases_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_province_details"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/relative"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="40dp" />
+
+</RelativeLayout>

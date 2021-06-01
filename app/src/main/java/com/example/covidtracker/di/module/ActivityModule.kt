@@ -4,9 +4,11 @@ package com.example.covidtracker.di.module
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.covidtracker.data.repository.SearchedCountryDataRepository
+import com.example.covidtracker.databinding.ActivityDetailsBinding
 import com.example.covidtracker.databinding.ActivityHomeBinding
 import com.example.covidtracker.databinding.ActivitySplashBinding
 import com.example.covidtracker.ui.base.BaseActivity
+import com.example.covidtracker.ui.details.DetailsViewModel
 import com.example.covidtracker.ui.home.HomeViewModel
 import com.example.covidtracker.ui.home.historyList.HistoryAdapter
 import com.example.covidtracker.ui.home.searchList.SearchAdapter
@@ -14,7 +16,6 @@ import com.example.covidtracker.ui.splash.SplashViewModel
 import com.example.covidtracker.utils.ViewModelProviderFactory
 import com.example.covidtracker.utils.network.NetworkHelper
 import com.example.covidtracker.utils.rx.SchedulerProvider
-
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -75,6 +76,22 @@ class ActivityModule(private val activity: BaseActivity<*>) {
             )
         }).get(HomeViewModel::class.java)
 
+    @Provides
+    fun providesDetailsBinding() = ActivityDetailsBinding.inflate(activity.layoutInflater)
+
+    @Provides
+    fun providesDetailsViewModel(
+        schedulerProvider: SchedulerProvider,
+        compositeDisposable: CompositeDisposable,
+        networkHelper: NetworkHelper
+    ): DetailsViewModel = ViewModelProviders.of(
+        activity, ViewModelProviderFactory(DetailsViewModel::class) {
+            DetailsViewModel(
+                schedulerProvider,
+                compositeDisposable,
+                networkHelper
+            )
+        }).get(DetailsViewModel::class.java)
 
 }
 

@@ -1,10 +1,12 @@
 package com.example.covidtracker.ui.home.historyList
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.covidtracker.data.local.entity.SavedItemEntity
 import com.example.covidtracker.data.repository.SearchedCountryDataRepository
 import com.example.covidtracker.ui.base.BaseItemViewModel
+import com.example.covidtracker.utils.common.Event
 import com.example.covidtracker.utils.network.NetworkHelper
 import com.example.covidtracker.utils.rx.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -26,12 +28,14 @@ class HistoryItemViewModel  @Inject constructor(
     val deathCount : LiveData<String> = Transformations.map(data){it.Deaths}
     val recoveredCount : LiveData<String> = Transformations.map(data){it.Recovered}
 
+    val onLaunchDetailsActivity : MutableLiveData<Event<Map<String, String>>> = MutableLiveData()
+
     override fun onCreate() {
 
     }
 
-    fun onLaunchDetailsActivity(){
-        //to do
+    fun onLaunchDetailsView() {
+        onLaunchDetailsActivity.postValue(Event(emptyMap()))
     }
 
 }

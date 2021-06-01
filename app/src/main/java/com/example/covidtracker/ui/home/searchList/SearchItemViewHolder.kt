@@ -1,6 +1,7 @@
 package com.example.covidtracker.ui.home.searchList
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -9,6 +10,7 @@ import com.example.covidtracker.R
 import com.example.covidtracker.data.remote.response.SearchedCountryDataResponse
 import com.example.covidtracker.di.component.ViewHolderComponent
 import com.example.covidtracker.ui.base.BaseItemViewHolder
+import com.example.covidtracker.ui.details.DetailsActivity
 
 class SearchItemViewHolder(parent: ViewGroup) :
     BaseItemViewHolder<SearchedCountryDataResponse, SearchItemViewModel>(
@@ -17,7 +19,7 @@ class SearchItemViewHolder(parent: ViewGroup) :
     ) {
 
     private var countryName: String? = null
-    private var provinceName: String? = null
+    private var provinceName: String? = "none"
     private var countConfirmed: String? = null
     private var countDeaths: String? = null
     private var countRecovered: String? = null
@@ -28,14 +30,40 @@ class SearchItemViewHolder(parent: ViewGroup) :
     }
 
     override fun setupView(view: View) {
-        itemView.setOnClickListener{
-            viewModel.saveItemInDatabase(countryName,provinceName,countConfirmed,countDeaths,countRecovered,countActive)
+        itemView.setOnClickListener {
+            viewModel.saveItemInDatabase(
+                countryName,
+                provinceName,
+                countConfirmed,
+                countDeaths,
+                countRecovered,
+                countActive
+            )
+            viewModel.onLaunchDetailsView()
         }
     }
 
     @SuppressLint("SetTextI18n")
     override fun setupObservers() {
         super.setupObservers()
+
+
+        viewModel.onLaunchDetailsActivity.observe(this, Observer {
+            it.getIfNotHandled()?.run {
+                itemView.context.startActivity(
+                    Intent(
+                        itemView.context,
+                        DetailsActivity::class.java
+                    )
+                        .putExtra("countryName", countryName)
+                        .putExtra("provinceName", provinceName)
+                        .putExtra("countConfirmed", countConfirmed)
+                        .putExtra("countDeaths", countDeaths)
+                        .putExtra("countRecovered", countRecovered)
+                        .putExtra("countActive", countActive)
+                )
+            }
+        })
 
         viewModel.countryName.observe(this, Observer {
             it.run {
@@ -54,10 +82,10 @@ class SearchItemViewHolder(parent: ViewGroup) :
                         provinceName = it
 
                     }
-                }else{
+                } else {
                     itemView.findViewById<TextView>(R.id.tv_province).run {
                         visibility = View.GONE
-                        provinceName = ""
+                        provinceName = "none"
                     }
                 }
             }

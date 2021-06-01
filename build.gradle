@@ -85,4 +85,7 @@ ext {
 
     //Animation
     lottieVersion = "3.7.0"
+
+    //Pie_charts (Graphs)
+    vesionpieChart = "v3.1.0"
 }
