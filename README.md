@@ -1,5 +1,5 @@
 # CovidTracker
-A Covid cases tracking Android app built for learning purposes. This app uses Covid public API to fetch the relevant covid cases data about the searched country. If the user visits the searched country covid details page, it saves the visited country details data in the history section using the Room database, shows a list of fetched data about the searched item, and lets the user visit its Details page if a user clicks on it while offline too.
+A Covid cases tracking Android app built for learning purposes. This app uses Covid public API to fetch the relevant covid cases data about the searched country. If the user visits the searched country covid details page, it saves the visited country details data in the history section using the Room database, shows a list of fetched data about the searched item, and let the user visit its Details page while app being offline too.
 
 This project is based on MVVM architecture and has a beautiful UI.
 
