@@ -15,6 +15,7 @@ This project is based on MVVM architecture and has a beautiful UI.
 
 
 ## Empty Home page and Search list screen.
+> With animation on Home screen.
 
 <img src="https://user-images.githubusercontent.com/39986507/120298478-be3f8580-c2e7-11eb-9e8e-c7a136b1552b.png" width="290">     <img src="https://user-images.githubusercontent.com/39986507/120298474-bd0e5880-c2e7-11eb-8872-77d9c018b379.png" width="290">                       
 
