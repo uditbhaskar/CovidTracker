@@ -6,6 +6,7 @@ import com.example.covidtracker.data.remote.NetworkService
 import io.reactivex.Single
 import javax.inject.Inject
 
+
 class SearchedCountryDataRepository @Inject constructor(
     private val networkService: NetworkService,
     private val databaseService: DatabaseService

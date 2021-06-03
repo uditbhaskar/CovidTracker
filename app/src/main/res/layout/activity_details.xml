@@ -42,13 +42,17 @@
 
     <RelativeLayout
         android:id="@+id/relative"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="70dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:background="@drawable/background_search"
-        android:padding="5dp">
+        >
 
 
         <TextView
@@ -56,9 +60,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:layout_marginEnd="20dp"
             android:maxLines="1"
-            android:padding="3dp"
-            android:textStyle="bold" />
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"/>
+
 
         <TextView
             android:id="@+id/tv_province_details"
@@ -67,8 +74,11 @@
             android:layout_below="@id/tv_country_details"
             android:ellipsize="end"
             android:maxLines="1"
-            android:padding="3dp"
-            android:textStyle="bold" />
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"/>
+
 
         <TextView
             android:id="@+id/tv_total_cases_details"
@@ -77,8 +87,11 @@
             android:layout_below="@id/tv_province_details"
             android:ellipsize="end"
             android:maxLines="1"
-            android:padding="3dp"
-            android:textStyle="bold" />
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            />
 
     </RelativeLayout>
 
@@ -87,10 +100,11 @@
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_below="@+id/relative"
+        android:layout_below="@id/relative"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="40dp" />
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="80dp" />
 
 </RelativeLayout>

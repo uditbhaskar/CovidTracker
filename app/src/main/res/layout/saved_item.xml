@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="200dp"
     android:layout_height="wrap_content"
-    android:layout_marginStart="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:layout_marginTop="24dp"
-    android:elevation="5dp">
+    android:elevation="15dp"
+    app:cardCornerRadius="12dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_search_new">
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/tv_country_history"
@@ -24,15 +27,15 @@
             android:padding="2dp"
             android:text="India"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <View
             android:id="@+id/view_bottom"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.7dp"
             android:layout_below="@+id/tv_country_history"
-            android:background="@color/colorPrimary" />
+            android:background="#84898E" />
 
         <TextView
             android:id="@+id/tv_province_history"
@@ -43,10 +46,10 @@
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:maxLines="1"
-            android:textSize="12sp"
             android:padding="2dp"
             android:text="@string/province_assam"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:textSize="11sp" />
 
 
         <View
@@ -54,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/tv_province_history"
-            android:background="@color/colorPrimary" />
+            android:background="#84898E" />
+
         <TextView
             android:id="@+id/tv_total_cases_history"
             android:layout_width="match_parent"
@@ -65,13 +69,12 @@
             android:gravity="center_horizontal"
             android:maxLines="1"
             android:padding="2dp"
-            android:textSize="13sp"
             android:text="@string/confirmed_cases_12134"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:textSize="12sp" />
 
 
     </RelativeLayout>
 
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

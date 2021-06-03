@@ -45,7 +45,7 @@ class ApplicationModule(private val applicationMy: CovidTracker) {
     @Provides
     @Singleton
     fun provideSharedPreferences(): SharedPreferences =
-            applicationMy.getSharedPreferences("bootcamp-instagram-project-prefs", Context.MODE_PRIVATE)
+            applicationMy.getSharedPreferences("udit-bhaskar-covid-project", Context.MODE_PRIVATE)
 
     /**
      * We need to write @Singleton on the provide method if we are create the instance inside this method
@@ -56,7 +56,7 @@ class ApplicationModule(private val applicationMy: CovidTracker) {
     fun provideDatabaseService(): DatabaseService =
             Room.databaseBuilder(
                     applicationMy, DatabaseService::class.java,
-                    "bootcamp-instagram-project-db"
+                    "udit-bhaskar-covid-app"
             ).build()
 
     @Provides
