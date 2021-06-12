@@ -1,7 +1,7 @@
 package com.example.covidtracker.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import com.example.covidtracker.data.local.entity.SavedItemEntity
+import com.example.covidtracker.data.mongodb.realm_object_model.CovidData
 import com.example.covidtracker.data.remote.response.SearchedCountryDataResponse
 import com.example.covidtracker.data.repository.SearchedCountryDataRepository
 import com.example.covidtracker.ui.base.BaseViewModel
@@ -20,26 +20,18 @@ class HomeViewModel(
 ) : BaseViewModel(schedulerProvider, compositeDisposable, networkHelper) {
 
     val searchQueryData: MutableLiveData<Resource<List<SearchedCountryDataResponse>>> = MutableLiveData()
-    val savedHistoryData: MutableLiveData<Resource<List<SavedItemEntity>>> = MutableLiveData()
+    val savedHistoryData: MutableLiveData<Resource<List<CovidData>>> = MutableLiveData()
 
     override fun onCreate() {
         onFetchingHistoryData()
     }
 
     fun onFetchingHistoryData() {
-        compositeDisposable.add(
-            searchedCountriesDataRepository.fetchItemsFromDB()
-                .subscribeOn(schedulerProvider.io())
-                .subscribe(
-                    {
-                        savedHistoryData.postValue(Resource.success(it))
-                    },
-                    {
-
-                    }
-                )
-        )
-
+        if(checkInternetConnectionWithMessage()){
+            searchedCountriesDataRepository.fetchItemsFromDB().apply {
+                savedHistoryData.postValue(Resource.success(this))
+            }
+        }
     }
 
 

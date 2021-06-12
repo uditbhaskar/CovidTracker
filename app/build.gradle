@@ -2,7 +2,10 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+
 }
+
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
@@ -21,12 +24,21 @@ android {
 
         debug{
             buildConfigField("String", "BASE_URL", base_url)
+            buildConfigField("String", "MONGODB_REALM_APP_ID", appId)
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", base_url)
+            buildConfigField("String", "MONGODB_REALM_APP_ID", appId)
         }
+    }
+
+
+    kapt { generateStubs = false }
+
+    realm {
+        syncEnabled = true
     }
 
     buildFeatures {
@@ -73,7 +85,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     // Lifecycle Annotations
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+   //  kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     // Multidex
     implementation "androidx.multidex:multidex:2.0.1"
@@ -82,14 +94,11 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    // Database
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-rxjava2:$room_version"
+
 
     // Image
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
+     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -105,27 +114,24 @@ dependencies {
     // logger
     implementation "com.jakewharton.timber:timber:$timber_version"
 
+    //realm mongodb
+    implementation "io.realm:realm-gradle-plugin:10.4.0"
+
     // Parser
     implementation "com.google.code.gson:gson:$gson_version"
 
     // Debugging
-    debugImplementation "com.amitshekhar.android:debug-db:$debug_db_version"
+     debugImplementation "com.amitshekhar.android:debug-db:$debug_db_version"
 
 
     // Local Unit tests
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
-    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+   // kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
     testImplementation "android.arch.core:core-testing:$core_testing_version"
     testImplementation "org.hamcrest:hamcrest-library:$hamcrest_version"
 
-    // UI Testing
-    androidTestImplementation "androidx.test:runner:$test_runner_version"
-    androidTestImplementation "androidx.test.ext:junit:$test_ext_runner_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
-    androidTestImplementation "org.mockito:mockito-core:$mockito_version"
-    kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
+
     //search bar
     implementation "com.github.mancj:MaterialSearchBar:$search_bar"
 

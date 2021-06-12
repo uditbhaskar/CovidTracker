@@ -1,18 +1,18 @@
 package com.example.covidtracker.ui.home.searchList
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.example.covidtracker.data.local.entity.SavedItemEntity
 import com.example.covidtracker.data.remote.response.SearchedCountryDataResponse
 import com.example.covidtracker.data.repository.SearchedCountryDataRepository
 import com.example.covidtracker.ui.base.BaseItemViewModel
 import com.example.covidtracker.utils.common.Event
 import com.example.covidtracker.utils.network.NetworkHelper
 import com.example.covidtracker.utils.rx.SchedulerProvider
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
+
 
 class SearchItemViewModel @Inject constructor(
     schedulerProvider: SchedulerProvider,
@@ -26,6 +26,10 @@ class SearchItemViewModel @Inject constructor(
     networkHelper
 ) {
 
+    companion object {
+        const val TAG = "SearchItemViewModel"
+    }
+
     val countryName: LiveData<String> = Transformations.map(data) { it.Country }
     val provinceName: LiveData<String?> = Transformations.map(data) { it.Province }
     val confirmedCount: LiveData<Int> = Transformations.map(data) { it.Confirmed }
@@ -33,7 +37,7 @@ class SearchItemViewModel @Inject constructor(
     val deathCount: LiveData<Int> = Transformations.map(data) { it.Deaths }
     val recoveredCount: LiveData<Int> = Transformations.map(data) { it.Recovered }
 
-    val onLaunchDetailsActivity : MutableLiveData<Event<Map<String, String>>> = MutableLiveData()
+    val onLaunchDetailsActivity: MutableLiveData<Event<Map<String, String>>> = MutableLiveData()
 
 
     override fun onCreate() {
@@ -45,21 +49,17 @@ class SearchItemViewModel @Inject constructor(
         countryName: String?,
         provinceName: String?,
         confirmedCount: String?,
-        deathCount:String?,
+        deathCount: String?,
         recoveredCount: String?,
         activeCount: String?
     ) {
-        compositeDisposable.addAll(
-            Single.just(SavedItemEntity(null,countryName,provinceName,confirmedCount,deathCount,recoveredCount,activeCount))
-                .subscribeOn(schedulerProvider.io())
-                .subscribe(
-                    {
-                        searchedCountriesDataRepository.saveItemsInDB(it)
-                    },
-                    {
-
-                    }
-                )
+        searchedCountriesDataRepository.saveItemsInDB(
+            countryName,
+            provinceName,
+            confirmedCount,
+            deathCount,
+            recoveredCount,
+            activeCount
         )
     }
 

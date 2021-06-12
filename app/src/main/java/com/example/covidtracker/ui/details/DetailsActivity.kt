@@ -83,7 +83,7 @@ class DetailsActivity : BaseActivity<DetailsViewModel>() {
 
             dataSet.colors = colors
 
-            val legend = binding.chart.legend.apply {
+            binding.chart.legend.apply {
                 isEnabled = true
                 form = Legend.LegendForm.CIRCLE
                 direction = Legend.LegendDirection.LEFT_TO_RIGHT

@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.covidtracker.CovidTracker
-import com.example.covidtracker.data.local.DatabaseService
+import com.example.covidtracker.data.mongodb.DatabaseService
 import com.example.covidtracker.data.remote.NetworkService
 
 import com.example.covidtracker.di.ApplicationContext
@@ -14,6 +14,7 @@ import com.example.covidtracker.utils.rx.SchedulerProvider
 
 import dagger.Component
 import io.reactivex.disposables.CompositeDisposable
+import io.realm.Realm
 import javax.inject.Singleton
 
 
@@ -44,6 +45,8 @@ interface ApplicationComponent {
     fun getSharedPreferences(): SharedPreferences
 
     fun getNetworkHelper(): NetworkHelper
+
+    fun getRealmInstance() : Realm
 
     /**---------------------------------------------------------------------------
      * Dagger will internally create UserRepository instance using constructor injection.

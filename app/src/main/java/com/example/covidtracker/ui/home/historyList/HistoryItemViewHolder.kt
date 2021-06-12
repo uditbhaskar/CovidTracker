@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.example.covidtracker.R
-import com.example.covidtracker.data.local.entity.SavedItemEntity
+import com.example.covidtracker.data.mongodb.realm_object_model.CovidData
+
 import com.example.covidtracker.di.component.ViewHolderComponent
 import com.example.covidtracker.ui.base.BaseItemViewHolder
 import com.example.covidtracker.ui.details.DetailsActivity
 
 class HistoryItemViewHolder(parent: ViewGroup) :
-    BaseItemViewHolder<SavedItemEntity, HistoryItemViewModel>(R.layout.saved_item, parent) {
+    BaseItemViewHolder<CovidData, HistoryItemViewModel>(R.layout.saved_item, parent) {
 
     private var countryName: String? = null
     private var provinceName: String? = "none"

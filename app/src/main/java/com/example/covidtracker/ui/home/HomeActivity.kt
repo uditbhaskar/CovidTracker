@@ -41,6 +41,7 @@ class HomeActivity : BaseActivity<HomeViewModel>() {
 
 
 
+
         binding.etSearch.setOnClickListener {
 
             viewModel.onSearching(binding.searchBar.text.trim().toString())
@@ -95,6 +96,11 @@ class HomeActivity : BaseActivity<HomeViewModel>() {
             }
         })
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.onFetchingHistoryData()
     }
 
     override fun onPause() {

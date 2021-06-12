@@ -3,7 +3,7 @@ package com.example.covidtracker.ui.home.historyList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.example.covidtracker.data.local.entity.SavedItemEntity
+import com.example.covidtracker.data.mongodb.realm_object_model.CovidData
 import com.example.covidtracker.data.repository.SearchedCountryDataRepository
 import com.example.covidtracker.ui.base.BaseItemViewModel
 import com.example.covidtracker.utils.common.Event
@@ -18,7 +18,7 @@ class HistoryItemViewModel  @Inject constructor(
     networkHelper: NetworkHelper,
     private val searchedCountriesDataRepository: SearchedCountryDataRepository
 
-) : BaseItemViewModel<SavedItemEntity>(schedulerProvider, compositeDisposable, networkHelper) {
+) : BaseItemViewModel<CovidData>(schedulerProvider, compositeDisposable, networkHelper) {
 
 
     val countryName: LiveData<String> = Transformations.map(data){ it.Country }

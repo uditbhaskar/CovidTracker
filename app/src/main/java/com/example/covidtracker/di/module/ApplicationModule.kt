@@ -3,10 +3,10 @@ package com.example.covidtracker.di.module
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.room.Room
+
 import com.example.covidtracker.BuildConfig
 import com.example.covidtracker.CovidTracker
-import com.example.covidtracker.data.local.DatabaseService
+import com.example.covidtracker.data.mongodb.DatabaseService
 import com.example.covidtracker.data.remote.NetworkService
 import com.example.covidtracker.data.remote.Networking
 
@@ -18,6 +18,7 @@ import com.example.covidtracker.utils.rx.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
+import io.realm.Realm
 import javax.inject.Singleton
 
 @Module
@@ -51,13 +52,7 @@ class ApplicationModule(private val applicationMy: CovidTracker) {
      * We need to write @Singleton on the provide method if we are create the instance inside this method
      * to make it singleton. Even if we have written @Singleton on the instance's class
      */
-    @Provides
-    @Singleton
-    fun provideDatabaseService(): DatabaseService =
-            Room.databaseBuilder(
-                    applicationMy, DatabaseService::class.java,
-                    "udit-bhaskar-covid-app"
-            ).build()
+
 
     @Provides
     @Singleton
@@ -68,7 +63,15 @@ class ApplicationModule(private val applicationMy: CovidTracker) {
                     10 * 1024 * 1024 // 10MB
             )
 
+    @Provides
+    @Singleton
+    fun provideDatabaseService() : DatabaseService = DatabaseService()
+
     @Singleton
     @Provides
     fun provideNetworkHelper(): NetworkHelper = NetworkHelper(applicationMy)
+
+    @Singleton
+    @Provides
+    fun provideRealmDB(): Realm = Realm.getDefaultInstance()
 }
