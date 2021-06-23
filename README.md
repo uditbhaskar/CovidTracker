@@ -3,7 +3,7 @@ A Covid cases tracking Android app built for learning purposes. This app uses Co
 
 This project is based on MVVM architecture and has a beautiful UI.
 
-## Dagger, Architectural Components,  RxJava, Lifecycle-Aware componentes, LiveData, ViewModel, Retrofit, Room & Material Design.
+## Dagger, Architectural Components,  RxJava, Lifecycle-Aware componentes, LiveData, ViewModel, Retrofit, Realm Mongo Database & Material Design.
 .
 
 
